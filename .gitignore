@@ -1,2 +1,2 @@
-private-network\cfg\notasecret.txt
-private-network\datadir\*
+private-network/cfg/notsecret.txt
+private-network/datadir/**
