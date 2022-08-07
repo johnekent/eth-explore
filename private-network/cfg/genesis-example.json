@@ -17,13 +17,13 @@
         }
     },
     "alloc": {
-        "0x397afd6300fD3E9e6e5e5c55a57a94DB8730AD2F": {
+        "account-output-1": {
             "balance": "1000"
         },
-        "0x75B5a9D079f749d447CDB8e6185a6BEB8b3f6A14": {
+        "account-output-2": {
             "balance": "2000"
         },
-        "0xa78ac46E10054002cBDD528BFf7338E2CF27aCD2": {
+        "account-output-3": {
             "balance": "3000"
         }
     },

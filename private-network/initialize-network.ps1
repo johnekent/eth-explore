@@ -1,3 +1,6 @@
+### For powershell, first run this command
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+
 ### Run setup commands.
 
 ### create a network to use for connectivity between components  (this creates it in the local machine environment -- only need to run once)
@@ -11,6 +14,8 @@ docker run -it -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client
 
 ### Initialize nodes -- this creates output in the datadir
 docker run -it -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
+
+docker run -it -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/node1:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
 
 ### Initialize the boot node
 docker run -it -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/bootnode:/datadir ethereum/client-go  init --datadir /datadir /cfg/genesis.json
