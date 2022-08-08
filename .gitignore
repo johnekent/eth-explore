@@ -1,3 +1,4 @@
 private-network/cfg/notsecret.txt
-private-network/datadir/**
+private-network/datadir
 **/keystore/**
+bin/**
