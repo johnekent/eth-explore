@@ -140,7 +140,7 @@ if __name__ == "__main__":
         if balance > 500:
             funded_account = account
 
-    #print(get_peers(session))
+    print(get_peers(session))
 
     project_root = "C:\\Users\\john_\\git\\eth-explore"
 
