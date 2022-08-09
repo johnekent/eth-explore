@@ -40,3 +40,9 @@ Follow the instructions on the docker client above in addition to the [Private N
 > Clique consensus algorithm is preferred for private networks since it's Proof-of-Authority (PoA) and doesn't require resource-intensive miners as are needed in Proof-of-Work (PoW).  
 > [Postman Ethereum JSON-RPC](https://documenter.getpostman.com/view/4117254/ethereum-json-rpc/RVu7CT5J#7218b6e7-5e7f-da59-fe48-17838cce9731) has some good examples.  
 > Account must be unlocked to create smart contract, so the dangerous flag <em>--allow-insecure-unlock</em> is used on the rpc init so that [unlockAccount can be called] (https://geth.ethereum.org/docs/rpc/ns-personal#personal_unlockaccount).  
+
+#### Errors
+> See [this logrocket post](https://blog.logrocket.com/understanding-resolving-metamask-error-codes/) for examples of [the oficial eth-rpc-errors](https://github.com/MetaMask/eth-rpc-errors/blob/main/src/error-constants.ts)
+> 'error': {'code': -32000, 'message': 'exceeds block gas limit'} -- means gas specified on transaction > gasLimit in genesis.json  
+> 'error': {'code': -32000, 'message': 'insufficient funds for gas * price + value'} -- refers to the gas, gasPrice, value parameters specified in the sendTransaction  
+> 'error': {'code': -32000, 'message': 'intrinsic gas too low'} -- there is a base transaction fee, and the specified gas/gasPrice doesn't exceed it

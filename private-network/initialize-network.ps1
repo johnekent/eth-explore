@@ -10,13 +10,12 @@ docker network create -d=bridge --subnet=10.20.30.0/24 private-eth-network
 ### This generates output that must be updated in genesis.json
 
 ### Create an account -- this creates output in the datadir
-sudo docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client-go account new --password /cfg/notsecret.txt --datadir /datadir
+docker run -it -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client-go account new --password /cfg/notsecret.txt --datadir /datadir
 
 ### Initialize nodes -- this creates output in the datadir
-sudo docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
+docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/rpc:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
 
-sudo docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/node1:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
+docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/node1:/datadir ethereum/client-go init --datadir /datadir /cfg/genesis.json
 
-### Initialize the boot node
-sudo docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/bootnode:/datadir ethereum/client-go  init --datadir /datadir /cfg/genesis.json
+docker run -d -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/bootnode:/datadir ethereum/client-go  init --datadir /datadir /cfg/genesis.json
 

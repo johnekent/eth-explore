@@ -65,7 +65,7 @@ def get_account_balance(session, account):
     return response.json()
 
 def get_peers(session):
-    response = _get_no_param_response("admin_peers")
+    response = _get_no_param_response(session, method="admin_peers")
 
     peers = response.json()['result']
 
@@ -108,7 +108,9 @@ def create_contract(session, from_address, bytecode_file):
 
     contract = {
         "from": from_address,
-        "gas": "0x76c0",
+        "gas": "0x76c0f",
+        "gasPrice": "0x76c0",
+        "value": "0xA",
         "data": f"0x{str(bytecode)}"
     }
 
@@ -123,6 +125,16 @@ def create_contract(session, from_address, bytecode_file):
 
     return response
 
+def get_transaction_receipt(session, transaction_hash):
+
+    response = send_request(
+        session=session,
+        endpoint=_endpoint,
+        method="eth_getTransactionReceipt",
+        params=[transaction_hash]
+    )
+
+    return response
 
 if __name__ == "__main__":
 
@@ -147,5 +159,10 @@ if __name__ == "__main__":
     unlock_account(session, funded_account, f"{project_root}\\private-network\\cfg\\notsecret.txt", 30)
 
     contract_result = create_contract(session, from_address=funded_account, bytecode_file=f"{project_root}\\bin\\src\\contracts\\ComplementStorage.bin")
-    print(contract_result.json())
+    print(f"The contract result json = {contract_result.json()}")
 
+    transaction_id = contract_result.json()['result']
+
+    receipt = get_transaction_receipt(session, transaction_id)
+
+    print(f"The contract creation result is {receipt.json()}")

@@ -9,9 +9,10 @@ Set-Variable -Name RUN_MODE -Value it   #interactive
 echo "Run Mode is ${RUN_MODE}"
 
 ### Start the bootnode -- networkid is the same as the chainId in the genesis.json
+## --nodekeyhex value is used to calculate the enode address used in bootnode references below
 docker stop eth-bootnode
 docker rm eth-bootnode
-sudo docker run -${RUN_MODE} --name eth-bootnode -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/bootnode:/datadir --hostname eth-bootnode --network private-eth-network ethereum/client-go --datadir /datadir --networkid 56472 --nodekeyhex="d50ceb3fc1910f17457f5f86586ced45f7b740ad1573f4aa2d19e5095ee24454" --netrestrict="10.20.30.0/24" --nodiscover  --ipcdisable  # these last 2 are for efficiency
+docker run -${RUN_MODE} --name eth-bootnode -v ${PWD}/cfg:/cfg -v ${PWD}/datadir/bootnode:/datadir --hostname eth-bootnode --network private-eth-network ethereum/client-go --datadir /datadir --networkid 56472 --nodekeyhex="d50ceb3fc1910f17457f5f86586ced45f7b740ad1573f4aa2d19e5095ee24454" --netrestrict="10.20.30.0/24" --nodiscover  --ipcdisable  # these last 2 are for efficiency
 
 ### Start a client as RPC endpoint (uses enode from output of above)
 ### NOTE:  do NOT include the "?discport=0" part of the enode or you get a UDP port error
